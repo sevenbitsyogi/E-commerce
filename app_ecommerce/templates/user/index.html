@@ -52,27 +52,32 @@
                      <h2>Today's Deals <span><a href="all-products.html">See all deals</a></span></h2>
                   </div>
                </div>
+              {% for product in products %}
                <div class="new-products-area pb-0">
                   <div class="col-12">
-                     <a href="all-products.html">
+                     
                         <div class="slider-img">
                            <i class="flaticon-fill-like"></i>
-                           <img class="img-fluid" alt="" src="/static/images/1.jpg">
-                           <p>Girls Stylish Frock</p>
-                           <div class="rating-point">
-                              <ul>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                              </ul>
-                           </div>
-                           <h3> <span>$ 23.33 &nbsp; </span> $ 15.33 <i class="flaticon-shopping-cart"></i> </h3>
+                           <img class="img-fluid" alt="" src="{% if product.image %} {{ product.image.url }}  {% endif %}">
+                           <p>{{ product.name }}</p>
+                           <form method='POST' action="/product_detail/">
+                           {% csrf_token %}
+
+                           <p> <span>{{ product.price }} &nbsp; </span> {{ product.stock }}<i class="flaticon-shopping-cart"></i> </p>
+                           <input type="submit" value="add to cart" class="btn btn-primary">
+                           </form>
                         </div>
-                     </a>
+                        
+                     
                   </div>
-                  <div class="col-12">
+                  
+               </div>
+               {% endfor%}
+             </div>
+          </div>
+          </div>
+                  
+                  <!-- <div class="col-12">
                      <a href="all-products.html">
                         <div class="slider-img">
                            <i class="flaticon-fill-like"></i>
@@ -285,10 +290,9 @@
                         </div>
                      </a>
                   </div>
-               </div>
-            </div>
-         </div>
-      </div>
+               </div> -->
+           
+      
       <!-- new-products area ends here -->
       <!-- kids-area start here -->
       <div class="kids-area mid-ads-home">
@@ -310,7 +314,7 @@
       <!-- kids-area start here -->
       <div class="clearfix"></div>
       <!-- new-products area start here -->
-      <div class="new-products-area-section">
+      <!-- <div class="new-products-area-section">
          <div class="container">
             <div class="mt-5">
                <div class="row">
@@ -436,7 +440,7 @@
                </div>
             </div>
          </div>
-      </div>
+      </div> -->
       <!-- new-products area ends here -->
       <!-- new-products area start here -->
       <section id="shop-category-section" class="new-products-area-section related-product">

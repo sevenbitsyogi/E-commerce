@@ -1,154 +1,75 @@
-<!doctype html>
-<html lang="en">
-<head>
-   <!-- Required meta tags -->
-   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   <!-- start bootstrap 4.1 css -->
-   <link href="css/bootstrap.min.css" rel="stylesheet">
-   <link href="css/bootstrap.min.css.map" rel="stylesheet">
-   <!-- end bootstrap 4.1 css -->
-   <link rel="icon" href="images/favicon.png" type="images/png">
-   <!-- flat-icon -->
-   <link rel="stylesheet" type="text/css" href="icons/flaticon.css">
-   <!-- flat-icon -->
-   <!-- slick-slider -->
-   <link rel="stylesheet" href="css/slick.min.css">
-   <link rel="stylesheet" href="css/slick-theme.min.css">
-   <!-- select2 -->
-   <link href="css/select2.min.css" rel="stylesheet" />
-   <!-- select2 -->
-   <!-- slick-slider -->
-   <link href="css/style.css" rel="stylesheet">
-   <link href="css/responsive.css" rel="stylesheet">
-   <title>Maan - Bootstrap E-Commerce Template</title>
-</head>
-<body>
-   <!-- start header here -->
-   <div class="container-fluid top-bar">
-      <div class="container">
-         <div class="row">
-            <!-- navbar -->
-            <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-5 shoping-site">
-               <a href="#" class="mb-0 text-white">
-                  20% cashback for all users | Code: <strong><span class="text-light">OGOFARS13 <span class="mdi mdi-tag-faces"></span></span> </strong>                   </a>
-               </div>
-               <div class="col-12 col-sm-6 col-md-6 col-lg-8 col-xl-7 top-bar-links">
-                  <ul>
-                     <li><a href="#">Gifts Cards</a></li>
-                     <li><a href="#">Help Center</a></li>
-                     <li>
-                        <a href="#"> <i class="fas fa-mobile-alt"></i> Download App</a>
-                     </li>
-                  </ul>
-               </div>
-               <!-- navbar -->
-            </div>
-         </div>
-      </div>
-      <div class="header">
-         <div class="container">
-            <div class="row">
-               <!-- nav -->
-               <!-- logo -->
-               <div class="col-12 col-sm-12 col-md-6 col-lg-2 col-xl-2 logo">
-                  <a href="index.html"> <img class="img-fluid" alt="" src="images/logo.png"></a>
-               </div>
-               <!-- logo -->
-               <!-- start Search bar -->
-               <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-7  ">
-                  <!-- search-bar -->
-                  <div class="input-group md-form form-sm form-2 pl-0">
-                     <input class="form-control my-0 py-1 amber-border" type="text" placeholder="Search a Product, Category or Brand" aria-label="Search">
-                     <div class="input-group-append">
-                        <a href="#">
-                           <span class="input-group-text amber lighten-3" id="basic-text1">
-                              <i class="fas fa-search"></i> Search
-                           </span>
-                        </a>
-                     </div>
-                  </div>
-                  <!-- search bar -->
-               </div>
-               <!-- end Search bar -->
-               <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-3 top-sign-in-cart-area">
-                  <!-- start cart btn -->
-                  <div class="dropdown cart-icon">
-                     <a href="mycart.html" class="btn cart-btn align-top top-icons">
-                        Cart <i class="flaticon-shopping-cart"></i> 
-                     </a>
-                  </div>
-                  <!-- end cart btn -->
-                  <!-- start sign-in btn -->
-                  <div class="dropdown top-sign-bar">
-                     <button type="button" class="btn dropdown-toggle align-top top-icons" data-toggle="modal" data-target="#exampleModal">
-                        Sign In <i class="flaticon-user"></i>
-                     </button>
-                  </div>
-                  <!-- end sign-in btn -->
-               </div>
-               <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 main-navbar">
-                  <nav class="navbar navbar-expand-lg">
-                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fa fa-bars"></i>
-                     </button>
-                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
-                           <li class="nav-item">
-                              <a class="nav-link active" href="index.html">Home <span class="sr-only">(current)</span></a>
-                           </li>
-                           <li class="nav-item">
-                              <a class="nav-link" href="#">WOMEN'S</a>
-                           </li>
-                           <li class="nav-item">
-                              <a class="nav-link" href="#">Men's</a>
-                           </li>
-                           <li class="nav-item">
-                              <a class="nav-link" href="#">Kids</a>
-                           </li>
-                           <li class="nav-item">
-                              <a class="nav-link" href="#">Home & Living</a>
-                           </li>
-                           <li class="nav-item dropdown">
-                              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Pages <i class="fas fa-chevron-down"></i>
+{% include 'user/header.html' %}
+
+<div class="container">
+      <div class="row" style="margin-top: 6%">
+      <h2>Your Shopping Cart
+          <span class="badge pull-right">
+              {% with totail_items=cart|length %}
+                  {% if cart|length > 0 %}
+                      My Shopping Order:
+                      <a href="{% url "cart:cart_detail" %}" style="color: #ffffff">
+                          {{ totail_items }} item {{ totail_items|pluralize }}, Kshs. {{ cart.get_total_price }}
+                      </a>
+                      {% else %}
+                      Your cart is empty.
+                  {% endif %}
+              {% endwith %}
+          </span>
+      </h2>
+          <table class="table table-striped table-hover">
+              <thead style="background-color: #5AC8FA">
+                  <tr>
+                      <th>Image</th>
+                      <th>Product</th>
+                      <th>Quantity</th>
+                      <th>Remove</th>
+                      <th>Unit Price</th>
+                      <th>Price</th>
+                  </tr>
+              </thead>
+              <tbody>
+              {% for item in cart %}
+                  {% with product=item.product  %}
+                      <tr>
+                          <td>
+                              <a href="{{ product.get_absolute_url }}">
+                                  <img src="{% if product.image %} {{ product.image.url }}  {% endif %}" alt="..." style="height: 130px; width: auto">
                               </a>
-                              <div class="dropdown-menu">
-                                 <a class="dropdown-item" href="all-products.html">All Products</a>
-                                 <a class="dropdown-item" href="order-details.html">Order Detail</a>
-                                 <a class="dropdown-item" href="address.html">Address</a>
-                                 <a class="dropdown-item" href="notifications.html">Notifications</a>
-                                 <a class="dropdown-item" href="wallet.html">Wallet</a>
-                                 <a class="dropdown-item" href="wishlist.html">Wishlist</a>
-                                 <a class="dropdown-item" href="order.html">Order</a>
-                                 <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
-                                 <a class="dropdown-item" href="purchese-request.html">Purchese Request</a>
-                                 <a class="dropdown-item" href="payment.html">Payment</a>
-                                 <a class="dropdown-item" href="guest.html">Guest</a>
-                              </div>
-                           </li>
-                           <li class="nav-item dropdown">
-                              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> My Account <i class="fas fa-chevron-down"></i>
-                              </a>
-                              <div class="dropdown-menu">
-                                 <a class="dropdown-item" href="my-profile.html">My Profile</a>
-                                 <a class="dropdown-item" href="address-detail.html">Address Detail</a>
-                                 <div class="dropdown-divider"></div>
-                                 <a class="dropdown-item" href="add-product.html">Add Product</a>
-                                 <a class="dropdown-item" href="delivery-address.html">Delivery Address</a>
-                                 <a class="dropdown-item" href="personal-information.html">Personal Information</a>
-                              </div>
-                           </li>
-                        </ul>
-                        <span class="navbar-text">
-                           Worlds's Fastest <strong> Online Shopping</strong> Destination
-                        </span>
-                     </div>
-                  </nav>
-               </div>
-            </div>
-         </div>
+                          </td>
+                          {% for product in products %}
+                          <td>{{ product.name }}</td>
+                          {% endfor %}
+                          <td>
+                              <form action="{% url "cart:cart_add" product.id %}" method="post">
+                                  {% csrf_token %}
+                                  {{ item.update_quantity_form.quantity }}
+                                  {{ item.update_quantity_form.update }}
+                                  <input type="submit" value="Update" class="btn btn-info">
+                              </form>
+                          </td>
+                          <td>
+                              <a href="{% url "cart:cart_remove" product.id %}">Remove</a>
+                          </td>
+                          <td>kshs. {{ item.price }}</td>
+                          <td>kshs. {{ item.total_price }}</td>
+                      </tr>
+                  {% endwith %}
+              {% endfor %}
+              <tr style="background-color: #5AC8FA">
+                  <td><b>Total</b></td>
+                  <td colspan="4"></td>
+                  <td colspan="num"><b>kshs. {{ cart.get_total_price }}</b></td>
+              </tr>
+              </tbody>
+          </table>
+      <p class="text-right">
+          <a href="{% url "product_list" %}" class="btn btn-default">Continue Shopping</a>
+          <a href="{% url "product_list" %}" class="btn btn-primary">Checkout</a>
+      </p>
       </div>
-      <!-- end header here -->
+  </div>
+
+<!-- end header here -->
       <!-- wishlist -->
       <div class="cart-area spaccer-50">
          <div class="container">
@@ -173,7 +94,6 @@
                               </div>
                            </div>
                         </div>
-                        
                         <div class="col-sm-8 col-xl-10 col-lg-8 col-md-7">
                            <div class="cart-info">
                               <h1>Men's T-Shirt Fashion</h1>

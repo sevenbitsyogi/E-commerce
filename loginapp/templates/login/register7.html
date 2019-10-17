@@ -1,0 +1,37 @@
+{% load static %}
+{% include 'header.html' %}
+
+            <div class="form-holder">
+                <div class="form-content">
+                    <div class="form-items">
+                           
+                 
+                        <h3>Get more things done with Loggin platform.</h3>
+                        <p>Access to the most powerfull tool in the entire design and web industry.</p>
+                        <div class="page-links">
+                            <a href="#">Login/</a><a href="register7.html" class="active">Register</a>
+                        </div>
+                        <form method="POST" action='/signup/'>
+                            {% csrf_token %}
+                           
+                             <!-- <button id="submit" type="submit" class="ibtn">Register</button> -->
+                            
+                            <input class="form-control" type="text" name="username" placeholder="User Name" required>
+                            <input class="form-control" type="email" name="email" placeholder="E-mail Address" required>
+                            <input class="form-control" type="password" name="password1" placeholder="Password" required>
+                            <input class="form-control" type="password" name="password2" placeholder=" Confirm Password" required>
+
+                            <div class="form-button">
+                                <button id="submit" type="submit" class="ibtn">Register</button>
+                            </div>
+                        </form>
+                        <div class="other-links">
+                            <span>Or register with</span><a href="#">Facebook</a><a href="#">Google</a><a href="#">Linkedin</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'footer.html' %}

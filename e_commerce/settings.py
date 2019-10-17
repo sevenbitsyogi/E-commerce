@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app_ecommerce.apps.AppEcommerceConfig'
+    'app_ecommerce.apps.AppEcommerceConfig',
+    'loginapp',
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +57,8 @@ ROOT_URLCONF = 'e_commerce.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['app_ecommerce/templates/user'],
+        #'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': ['app_ecommerce/templates/user']+['loginapp/templates/login'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -124,3 +127,12 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'shah.yogi@tristonsoft.com'
+SERVER_EMAIL = 'shah.yogi@tristonsoft.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'shah.yogi@tristonsoft.com'
+EMAIL_HOST_PASSWORD = 'Yogi.Shah'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

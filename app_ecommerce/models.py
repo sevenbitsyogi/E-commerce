@@ -31,7 +31,7 @@ class Product(models.Model):
     stock = models.PositiveIntegerField(default='DEFAULT VALUE')
     # created_at = models.DateTimeField(default='django.utils.timezone.now')
     # updated_at = models.DateTimeField(default='django.utils.timezone.now')
-    image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True)
+    image = models.ImageField(upload_to='product_photo', blank=True)
 
     class Meta:
         ordering = ('name', )
