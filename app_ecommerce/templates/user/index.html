@@ -1,4 +1,5 @@
 {% include "user/header.html" %}
+{% load static %}
 
        <!-- end header here -->
       <!-- banner-area start here -->
@@ -44,40 +45,39 @@
       </div>
       <!-- kids-area start here -->
       <!-- new-products area start here -->
-      <div class="new-products-area-section">
+      <!-- <div class="new-products-area-section">
          <div class="container">
             <div class="mt-5">
                <div class="row">
                   <div class="col-md-12">
-                     <h2>Today's Deals <span><a href="all-products.html">See all deals</a></span></h2>
+                     <h2>Today's Deals <span><a href="{{ product.get_absolute_url }}">See all deals</a></span></h2>
                   </div>
                </div>
               {% for product in products %}
                <div class="new-products-area pb-0">
+                  
                   <div class="col-12">
                      
                         <div class="slider-img">
                            <i class="flaticon-fill-like"></i>
-                           <img class="img-fluid" alt="" src="{% if product.image %} {{ product.image.url }}  {% endif %}">
-                           <p>{{ product.name }}</p>
-                           <form method='POST' action="/product_detail/">
-                           {% csrf_token %}
+                           <a href="{{ product.get_absolute_url }}"></a>
+                           <img class="img-fluid" alt="" src="{% if product.image %} {{ product.image.url }} {% endif %}">
+                        </a>
+                        <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                          
 
-                           <p> <span>{{ product.price }} &nbsp; </span> {{ product.stock }}<i class="flaticon-shopping-cart"></i> </p>
-                           <input type="submit" value="add to cart" class="btn btn-primary">
-                           </form>
-                        </div>
-                        
-                     
-                  </div>
+                           <p><span>{{ product.price }} &nbsp; </span> {{ product.stock }}<i class="flaticon-shopping-cart"></i> </p>
                   
+                        </div>                                     
+                  </div>                 
                </div>
                {% endfor%}
              </div>
           </div>
-          </div>
+      </div>
+         
                   
-                  <!-- <div class="col-12">
+                   <div class="col-12">
                      <a href="all-products.html">
                         <div class="slider-img">
                            <i class="flaticon-fill-like"></i>
@@ -290,12 +290,12 @@
                         </div>
                      </a>
                   </div>
-               </div> -->
+               </div> <!---->
            
       
       <!-- new-products area ends here -->
       <!-- kids-area start here -->
-      <div class="kids-area mid-ads-home">
+      <!--<div class="kids-area mid-ads-home">
          <div class="container">
             <div class="row">
                <div class="col-md-6 col-sm-6 col-lg-6 col-xl-6 girls-area">
@@ -310,25 +310,28 @@
                </div>
             </div>
          </div>
-      </div>
+      </div> -->
       <!-- kids-area start here -->
       <div class="clearfix"></div>
       <!-- new-products area start here -->
-      <!-- <div class="new-products-area-section">
+       <div class="new-products-area-section">
          <div class="container">
             <div class="mt-5">
                <div class="row">
                   <div class="col-md-12">
-                     <h2>Today's Deals <span><a href="all-products.html">See all deals</a></span></h2>
+                     <h2>Today's Deals <span><a href="{{ product.get_absolute_url }}">See all deals</a></span></h2>
                   </div>
                </div>
                <div class="new-products-area">
+                 {% for product in products %}
                   <div class="col-12">
-                     <a href="all-products.html">
+                     
                         <div class="slider-img">
                            <i class="flaticon-fill-like"></i>
-                           <img class="img-fluid" alt="" src="/static/images/7.jpg">
-                           <p>Man's T-shirts</p>
+                           <a href="{{ product.get_absolute_url }}">
+                           <img class="img-fluid" alt="" src="{% if product.image %} {{ product.image.url }} {% endif %}">
+                           </a>
+                           <a href="{{ product.get_absolute_url }}"><p>{{ product.name }}</p></a>
                            <div class="rating-point">
                               <ul>
                                  <li><i class="fa fa-star"></i></li>
@@ -338,109 +341,15 @@
                                  <li><i class="fa fa-star"></i></li>
                               </ul>
                            </div>
-                           <h3> <span> $ 23.33 &nbsp; </span> $ 15.33 <i class="flaticon-shopping-cart"></i> </h3>
+                           <h3> <span> {{ product.price }}$  &nbsp; </span>  <i class="flaticon-shopping-cart"></i> </h3>
                         </div>
-                     </a>
+                     
                   </div>
-                  <div class="col-12">
-                     <a href="all-products.html">
-                        <div class="slider-img">
-                           <i class="flaticon-fill-like"></i>
-                           <img class="img-fluid" alt="" src="/static/images/8.jpg">
-                           <p>Shirts for Man</p>
-                           <div class="rating-point">
-                              <ul>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                              </ul>
-                           </div>
-                           <h3> <span> $ 23.33 &nbsp; </span> $ 15.33 <i class="flaticon-shopping-cart"></i> </h3>
-                        </div>
-                     </a>
-                  </div>
-                  <div class="col-12">
-                     <a href="all-products.html">
-                        <div class="slider-img">
-                           <i class="flaticon-fill-like"></i>
-                           <img class="img-fluid" alt="" src="/static/images/9.jpg">
-                           <p>Man's Kot</p>
-                           <div class="rating-point">
-                              <ul>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                              </ul>
-                           </div>
-                           <h3> <span> $ 23.33 &nbsp; </span> $ 15.33 <i class="flaticon-shopping-cart"></i> </h3>
-                        </div>
-                     </a>
-                  </div>
-                  <div class="col-12">
-                     <a href="all-products.html">
-                        <div class="slider-img">
-                           <i class="flaticon-fill-like"></i>
-                           <img class="img-fluid" alt="" src="/static/images/10.jpg">
-                           <p>Man's Jacket</p>
-                           <div class="rating-point">
-                              <ul>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                              </ul>
-                           </div>
-                           <h3> <span> $ 23.33 &nbsp; </span> $ 15.33 <i class="flaticon-shopping-cart"></i> </h3>
-                        </div>
-                     </a>
-                  </div>
-                  <div class="col-12">
-                     <a href="all-products.html">
-                        <div class="slider-img">
-                           <i class="flaticon-fill-like"></i>
-                           <img class="img-fluid" alt="" src="/static/images/11.jpg">
-                           <p>Blue Funky Jean</p>
-                           <div class="rating-point">
-                              <ul>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                              </ul>
-                           </div>
-                           <h3> <span> $ 23.33 &nbsp; </span> $ 15.33 <i class="flaticon-shopping-cart"></i> </h3>
-                        </div>
-                     </a>
-                  </div>
-                  <div class="col-12">
-                     <a href="all-products.html">
-                        <div class="slider-img">
-                           <i class="flaticon-fill-like"></i>
-                           <img class="img-fluid" alt="" src="/static/images/6.jpg">
-                           <p>Western Dress</p>
-                           <div class="rating-point">
-                              <ul>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                              </ul>
-                           </div>
-                           <h3> <span> $ 23.33 &nbsp; </span> $ 15.33 <i class="flaticon-shopping-cart"></i> </h3>
-                        </div>
-                     </a>
-                  </div>
+                  {% endfor %}
                </div>
             </div>
          </div>
-      </div> -->
+      </div> 
       <!-- new-products area ends here -->
       <!-- new-products area start here -->
       <section id="shop-category-section" class="new-products-area-section related-product">

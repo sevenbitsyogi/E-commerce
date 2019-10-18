@@ -7,8 +7,6 @@ from cart.forms import CartAddProductForm
 
 # Create your views here.
 
-def home(request):
-    return render(request,'user/index.html')
 
 def product_list(request, category_slug=None):
     category = None
@@ -28,13 +26,11 @@ def product_list(request, category_slug=None):
     }
     return render(request, 'index.html',{'category':category,'products':products})
 
-def product_detail(request):
-    product = get_object_or_404(Product, id=id,available=True)
+def product_detail(request,id,slug):
+    product = get_object_or_404(Product, id=id, slug=slug,available=True)
     cart_product_form = CartAddProductForm()
-    products = Product.objects.filter(available=True)
-    print(products)
     context = {
-        'products': products,
+        'product': product,
         'cart_product_form': cart_product_form
     }
-    return render(request, 'user/mycart.html',{'products':products})
+    return render(request, 'mycart.html', context)

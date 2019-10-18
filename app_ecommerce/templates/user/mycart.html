@@ -1,77 +1,43 @@
 {% include 'user/header.html' %}
 
 <div class="container">
-      <div class="row" style="margin-top: 6%">
-      <h2>Your Shopping Cart
-          <span class="badge pull-right">
-              {% with totail_items=cart|length %}
-                  {% if cart|length > 0 %}
-                      My Shopping Order:
-                      <a href="{% url "cart:cart_detail" %}" style="color: #ffffff">
-                          {{ totail_items }} item {{ totail_items|pluralize }}, Kshs. {{ cart.get_total_price }}
-                      </a>
-                      {% else %}
-                      Your cart is empty.
-                  {% endif %}
-              {% endwith %}
-          </span>
-      </h2>
-          <table class="table table-striped table-hover">
-              <thead style="background-color: #5AC8FA">
-                  <tr>
-                      <th>Image</th>
-                      <th>Product</th>
-                      <th>Quantity</th>
-                      <th>Remove</th>
-                      <th>Unit Price</th>
-                      <th>Price</th>
-                  </tr>
-              </thead>
-              <tbody>
-              {% for item in cart %}
-                  {% with product=item.product  %}
-                      <tr>
-                          <td>
-                              <a href="{{ product.get_absolute_url }}">
-                                  <img src="{% if product.image %} {{ product.image.url }}  {% endif %}" alt="..." style="height: 130px; width: auto">
-                              </a>
-                          </td>
-                          {% for product in products %}
-                          <td>{{ product.name }}</td>
-                          {% endfor %}
-                          <td>
-                              <form action="{% url "cart:cart_add" product.id %}" method="post">
-                                  {% csrf_token %}
-                                  {{ item.update_quantity_form.quantity }}
-                                  {{ item.update_quantity_form.update }}
-                                  <input type="submit" value="Update" class="btn btn-info">
-                              </form>
-                          </td>
-                          <td>
-                              <a href="{% url "cart:cart_remove" product.id %}">Remove</a>
-                          </td>
-                          <td>kshs. {{ item.price }}</td>
-                          <td>kshs. {{ item.total_price }}</td>
-                      </tr>
-                  {% endwith %}
-              {% endfor %}
-              <tr style="background-color: #5AC8FA">
-                  <td><b>Total</b></td>
-                  <td colspan="4"></td>
-                  <td colspan="num"><b>kshs. {{ cart.get_total_price }}</b></td>
-              </tr>
-              </tbody>
-          </table>
-      <p class="text-right">
-          <a href="{% url "product_list" %}" class="btn btn-default">Continue Shopping</a>
-          <a href="{% url "product_list" %}" class="btn btn-primary">Checkout</a>
-      </p>
-      </div>
-  </div>
+   <div class="row" style="margin-top: 6%">
+
+     <div class="col-sm-8 blog-main">
+
+       <div class="blog-post">
+           <div class="row">
+             <div class="card">
+                 <div class="card-body">
+                     <div class="col-md-6 text-right">
+                         <img src="{% if product.image %} {{ product.image.url }}  {% endif %}" alt="..." style="height: 170px; width: auto">
+                     </div>
+                     <div class="col-md-6" style="padding-left: 20px">
+                         <h3>{{ product.name }}</h3>
+                         <h6><a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a></h6>
+                         <p class="text-muted"> {{ product.price }}$</p>
+                         <form action="{% url "cart:cart_add" product.id %}" method="post">
+                             {% csrf_token %}
+                             {{ cart_product_form }}
+                             <input type="submit" value="add to cart" class="btn btn-primary">
+                         </form>
+                         <p>{{ product.description|safe|linebreaksbr }}</p>
+                     </div>
+                 </div>
+             </div>
+           </div>
+
+
+       </div><!-- /.blog-post -->
+
+     </div><!-- /.blog-main -->
+   </div><!-- /.row -->
+
+ </div><!-- /.container -->
 
 <!-- end header here -->
       <!-- wishlist -->
-      <div class="cart-area spaccer-50">
+      <!-- <div class="cart-area spaccer-50">
          <div class="container">
             <div class="row">
                <div class="col-md-8 col-sm-12 col-lg-8 col-xl-9">
@@ -149,7 +115,7 @@
             </div>
          </div>
       </div>
-   </div>
+   </div> -->
    <!-- footer-area start here -->
    <div class="footer-area-section mt-5 pt-2">
       <div class="container">

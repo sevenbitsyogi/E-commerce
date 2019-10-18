@@ -1,4 +1,4 @@
-{% extends 'shop/base.html' %}
+{% include 'user/header.html' %}
 {% load static %}
 {% block title %}
     Your Shopping Cart
@@ -13,8 +13,8 @@
                 {% with totail_items=cart|length %}
                     {% if cart|length > 0 %}
                         My Shopping Order:
-                        <a href="{% url "cart:cart_detail" %}" style="color: #ffffff">
-                            {{ totail_items }} item {{ totail_items|pluralize }}, Kshs. {{ cart.get_total_price }}
+                        <a href="{% url "cart:cart_detail" %}" style="color: #944646">
+                            {{ totail_items }} item in  {{ cart.get_total_price }}
                         </a>
                         {% else %}
                         Your cart is empty.
@@ -22,7 +22,7 @@
                 {% endwith %}
             </span>
         </h2>
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover" border="1">
                 <thead style="background-color: #5AC8FA">
                     <tr>
                         <th>Image</th>
@@ -54,22 +54,23 @@
                             <td>
                                 <a href="{% url "cart:cart_remove" product.id %}">Remove</a>
                             </td>
-                            <td>kshs. {{ item.price }}</td>
-                            <td>kshs. {{ item.total_price }}</td>
+                            <td> {{ item.price }}</td>
+                            <td> {{ item.total_price }}</td>
                         </tr>
                     {% endwith %}
                 {% endfor %}
                 <tr style="background-color: #5AC8FA">
                     <td><b>Total</b></td>
                     <td colspan="4"></td>
-                    <td colspan="num"><b>kshs. {{ cart.get_total_price }}</b></td>
+                    <td colspan="num"><b> {{ cart.get_total_price }}</b></td>
                 </tr>
                 </tbody>
             </table>
         <p class="text-right">
-            <a href="{% url "shop:product_list" %}" class="btn btn-default">Continue Shopping</a>
-            <a href="{% url "orders:order_create" %}" class="btn btn-primary">Checkout</a>
+            <a href="{% url "app_ecommerce:product_list" %}" class="btn btn-default">Continue Shopping</a>
+
         </p>
         </div>
     </div>
 {% endblock %}
+{% include 'user/footer.html' %}

@@ -128,6 +128,11 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static")
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'product_photo/')
+
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'shah.yogi@tristonsoft.com'
 SERVER_EMAIL = 'shah.yogi@tristonsoft.com'
@@ -136,3 +141,5 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'shah.yogi@tristonsoft.com'
 EMAIL_HOST_PASSWORD = 'Yogi.Shah'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+CART_SESSION_ID = 'cart'
