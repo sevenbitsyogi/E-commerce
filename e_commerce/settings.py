@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'app_ecommerce.apps.AppEcommerceConfig',
     'loginapp',
     'cart',
+    'orders',
 ]
 
 MIDDLEWARE = [
