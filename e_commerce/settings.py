@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'loginapp',
     'cart',
     'orders',
+    'payment',
+    'paypal.standard.ipn',
 ]
 
 MIDDLEWARE = [
@@ -144,3 +146,8 @@ EMAIL_HOST_PASSWORD = 'Yogi.Shah'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 CART_SESSION_ID = 'cart'
+
+
+#paypal
+PAYPAL_RECEIVER_EMAIL = 'yogishah9698@gmail.com'
+PAYPAL_TEST = True
