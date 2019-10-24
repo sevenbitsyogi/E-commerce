@@ -26,5 +26,5 @@ urlpatterns = [
     path('ordes/',include('orders.urls')),
     path('paypal/',include('paypal.standard.ipn.urls')),
     path('payment/',include('payment.urls')),
-    path('',include('loginapp.urls'))
+    path('user/',include('loginapp.urls'))
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

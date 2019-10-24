@@ -21,14 +21,14 @@ from django.core.mail import EmailMessage
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
-        username = request.POST.get('username')
-        print(username)
-        email = request.POST.get('email')
-        print(email)
-        password1 = request.POST.get('password1')
-        print(password1)
-        password2 = request.POST.get('password2')
-        print(password2)
+        # username = request.POST.get('username')
+        # print(username)
+        # email = request.POST.get('email')
+        # print(email)
+        # password1 = request.POST.get('password1')
+        # print(password1)
+        # password2 = request.POST.get('password2')
+        # print(password2)
         if form.is_valid():
             print(form.is_valid())
             user = form.save(commit=False)
@@ -37,20 +37,22 @@ def signup(request):
             user.save()
             current_site = get_current_site(request)
             subject = 'Activate Your MySite Account'
-            message = render_to_string('accounts/account_activation_email.html', {
+            message = render_to_string('account_activation_email.html', {
                 'user': user,
                 'domain': current_site.domain,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': account_activation_token.make_token(user),
             })
             user.email_user(subject, message)
-            return redirect('account_activation_sent')
-        else:
-            print("form not valid")
+            print("hi")
+            return redirect('/account_activation_sent')
+        
     else:
        form = SignUpForm()
     return render(request, 'register7.html', {'form': form})
 
+def account_activation_sent(request):
+    return render(request, 'account_activation_sent.html')
 
 
 def activate_account(request, uidb64, token):
@@ -64,8 +66,9 @@ def activate_account(request, uidb64, token):
         user.save()
         login(request, user)
         return HttpResponse('Your account has been activate successfully')
-    else:
-        return HttpResponse('Activation link is invalid!')
+        return render(request,'login7.html')
+    # else:
+    #     return HttpResponse('Activation link is invalid!')
 
 
 def user_login(request):
@@ -77,12 +80,12 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponseRedirect("/login")
+                    return render(request,"login7.html")
                 else:
                     return HttpResponse("You're account is disabled.")
             else:
                 print("invalid login details " + username + " " + password)
-                return render(request,'login7.html')
+                return render(request,'register7.html')
         else:
             return render(request,'login7.html')
 

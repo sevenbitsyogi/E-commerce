@@ -23,7 +23,7 @@ def order_create(request):
             #order_created.delay(order.id)
             request.session['order.id']=order.id
             return redirect('/payment/process_payment')
-        return render(request,'/payment/process_payment.html')
+        return render(request,'/payment/payment_done.html')
         #return render(request,'orders/order/created.html',{'order':order})
     else:
         form=OrderCreateForm()

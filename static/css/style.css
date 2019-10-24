@@ -2949,3 +2949,7 @@ hr {
    flex-direction: column;
 }
 /*product detail css ends heres*/
+.col-md-3-new {
+    width: 33.33%;
+    float: left;
+}

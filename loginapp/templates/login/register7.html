@@ -8,18 +8,19 @@
                  
                         <h3>Get more things done with Loggin platform.</h3>
                         <p>Access to the most powerfull tool in the entire design and web industry.</p>
-                        <div class="page-links">
-                            <a href="#">Login/</a><a href="register7.html" class="active">Register</a>
-                        </div>
-                        <form method="POST" action='/signup/'>
+                        
+                        <div class="container">
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-7  ">
+                                    <h2>Register</h2>
+                        <form method="POST" action=''>
                             {% csrf_token %}
                            
                              <!-- <button id="submit" type="submit" class="ibtn">Register</button> -->
                             
-                            <input class="form-control" type="text" name="username" placeholder="User Name" required>
-                            <input class="form-control" type="email" name="email" placeholder="E-mail Address" required>
-                            <input class="form-control" type="password" name="password1" placeholder="Password" required>
-                            <input class="form-control" type="password" name="password2" placeholder=" Confirm Password" required>
+                            <input class="form-control" type="text" name="username" placeholder="User Name" required><br/>
+                            <input class="form-control" type="email" name="email" placeholder="E-mail Address" required><br/>
+                            <input class="form-control" type="password" name="password1" placeholder="Password" required><br/>
+                            <input class="form-control" type="password" name="password2" placeholder=" Confirm Password" required><br/>
 
                             <div class="form-button">
                                 <button id="submit" type="submit" class="ibtn">Register</button>

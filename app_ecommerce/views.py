@@ -2,6 +2,7 @@ from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse,request,HttpResponseRedirect
 from .models import Category, Product
 from cart.forms import CartAddProductForm
+from django.views.generic import TemplateView, ListView
 
 
 
@@ -34,3 +35,8 @@ def product_detail(request,id,slug):
         'cart_product_form': cart_product_form
     }
     return render(request, 'mycart.html', context)
+
+class search_results(ListView):
+    model = Product
+    template_name = 'search_results.html'
+    queryset = Product.objects.filter(name__icontains='Boston')
