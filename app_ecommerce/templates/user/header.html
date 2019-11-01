@@ -64,20 +64,29 @@
                </div>
                <!-- logo -->
                <!-- start Search bar -->
-               <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-7  ">
+               <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-7">
                   <!-- search-bar -->
-                  <div class="input-group md-form form-sm form-2 pl-0">
+                  <!-- <div class="input-group md-form form-sm form-2 pl-0">
                      <input class="form-control my-0 py-1 amber-border" type="text" placeholder="Search a Product, Category or Brand" aria-label="Search">
                      <div class="input-group-append">
-                        <a href="#">
+                       
+                        <a href="{{ object.get_absolute_url }}">
                         <span class="input-group-text amber lighten-3" id="basic-text1">
                         <i class="fas fa-search"></i> Search
                         </span>
                         </a>
+                  
                      </div>
-                  </div>
+                  </div> -->
                   <!-- search bar -->
                </div>
+
+               <form method='GET' action='{% url 'app_ecommerce:search' %}'>
+                     
+                     <input type='text' name='Product'   value=''>
+                     <input class="button" type='submit' value="Search Profile">
+                     </a>
+                   </form>
                <!-- end Search bar -->
                <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-3 top-sign-in-cart-area">
                   <!-- start cart btn -->
@@ -88,7 +97,44 @@
                   </div>
                   <!-- end cart btn -->
                   <!-- start sign-in btn -->
-                  <div class="dropdown cart-icon">
+                  
+									{% if not user.is_authenticated %}
+									
+                                 <div class="dropdown cart-icon">
+                                       <a href="{% url "loginapp:signup" %}" class="btn cart-btn align-top top-icons">
+                                          Signup <i class="flaticon-shopping-cart"></i> 
+                                       </a>
+                                    </div>
+			
+
+								
+                                 <div class="dropdown cart-icon">
+                                       <a href="{% url "loginapp:login" %}" class="btn cart-btn align-top top-icons">
+                                          Login <i class="flaticon-shopping-cart"></i> 
+                                       </a>
+                                    </div>
+
+										
+								
+									{% else %}
+									
+                                 <div class="dropdown cart-icon">
+                                       <a href="{% url "loginapp:logout" %}" class="btn cart-btn align-top top-icons">
+                                          Logout <i class="flaticon-shopping-cart"></i> 
+                                       </a>
+                                    </div>
+										
+									
+									{% endif %}
+									
+                       
+                     </div>
+							
+
+                  
+
+
+                  <!-- <div class="dropdown cart-icon">
                      <a href="{% url "loginapp:login" %}" class="btn cart-btn align-top top-icons">
                         Sign In <i class="flaticon-shopping-cart"></i> 
                      </a>
@@ -97,7 +143,7 @@
                         <a href="{% url "loginapp:signup" %}" class="btn cart-btn align-top top-icons">
                            Sign Up <i class="flaticon-shopping-cart"></i> 
                         </a>
-                     </div>
+                     </div> -->
                      <!-- <button type="button" class="btn dropdown-toggle align-top top-icons" data-toggle="modal" data-target="#exampleModal">
                      Sign In <i class="flaticon-user"></i>
                      </button> -->

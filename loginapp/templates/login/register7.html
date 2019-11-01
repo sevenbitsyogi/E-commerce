@@ -6,18 +6,18 @@
                     <div class="form-items">
                            
                  
-                        <h3>Get more things done with Loggin platform.</h3>
-                        <p>Access to the most powerfull tool in the entire design and web industry.</p>
-                        
+                       
                         <div class="container">
-                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-7  ">
-                                    <h2>Register</h2>
+                         <center>   
+                            <div class="col-12 col-md-9 col-lg-6   ">
+                                    <h2>Register</h2><br>
                         <form method="POST" action=''>
                             {% csrf_token %}
                            
-                             <!-- <button id="submit" type="submit" class="ibtn">Register</button> -->
-                            
-                            <input class="form-control" type="text" name="username" placeholder="User Name" required><br/>
+                             
+                            <div class='container'> 
+                            <input class="form-control" type="text" name="username" placeholder="User Name" maxlength="60" required><br/>
+                       
                             <input class="form-control" type="email" name="email" placeholder="E-mail Address" required><br/>
                             <input class="form-control" type="password" name="password1" placeholder="Password" required><br/>
                             <input class="form-control" type="password" name="password2" placeholder=" Confirm Password" required><br/>
@@ -25,12 +25,16 @@
                             <div class="form-button">
                                 <button id="submit" type="submit" class="ibtn">Register</button>
                             </div>
+                        </div>
                         </form>
                         <div class="other-links">
                             <span>Or register with</span><a href="#">Facebook</a><a href="#">Google</a><a href="#">Linkedin</a>
+                        
                         </div>
-                    </div>
                 </div>
+                </div>
+                
+            </center>
             </div>
         </div>
     </div>

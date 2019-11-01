@@ -137,6 +137,10 @@ STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static")
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'product_photo/')
 
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'shah.yogi@tristonsoft.com'
 SERVER_EMAIL = 'shah.yogi@tristonsoft.com'

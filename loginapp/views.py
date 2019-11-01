@@ -1,9 +1,9 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,reverse
 from django.http import HttpResponse,request,HttpResponseRedirect
 from .forms import SignUpForm,LoginForm
 from django.contrib.auth.forms import UserCreationForm 
 from django.contrib import messages
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,logout
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 from django.contrib.auth.models import User
@@ -13,6 +13,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from .token_generator import account_activation_token
 from django.core.mail import EmailMessage
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -66,9 +67,9 @@ def activate_account(request, uidb64, token):
         user.save()
         login(request, user)
         return HttpResponse('Your account has been activate successfully')
-        return render(request,'login7.html')
-    # else:
-    #     return HttpResponse('Activation link is invalid!')
+       
+    else:
+        return HttpResponse('Activation link is invalid!')
 
 
 def user_login(request):
@@ -80,7 +81,7 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return render(request,"login7.html")
+                    return render(request,"user/index.html")
                 else:
                     return HttpResponse("You're account is disabled.")
             else:
@@ -92,4 +93,9 @@ def user_login(request):
 
 def password_reset(request):
     return render(request,"forget7.html")
-   
+
+
+@login_required
+def user_logout(request):
+    logout(request)
+    return render(request,"login7.html")

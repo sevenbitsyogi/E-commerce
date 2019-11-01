@@ -3,13 +3,15 @@
             <div class="form-holder">
                 <div class="form-content">
                     <div class="form-items">
-                        <h3>Password Reset</h3>
-                        <p>To reset your password, enter the email address you use to sign in to iofrm</p>
+                        <div class="container">
+                                <center>   
+                                   <div class="col-12 col-md-9 col-lg-6   ">
+                                        <h2>Password Reset</h2>
                         <form method="POST">
                             {% csrf_token %}
-                            <input class="form-control" type="text" name="email" placeholder="E-mail Address" required>
+                            <input class="form-control" type="text" name="email" placeholder="E-mail Address" required></br>
                             <div class="form-button full-width">
-                                <button id="submit" type="submit" class="ibtn btn-forget">Send Reset Link</button>
+                                <button id="submit" type="submit" class="ibtn btn-forget">Send Reset Link</button></br>
                             </div>
                         </form>
                     </div>
@@ -21,8 +23,13 @@
                         <p>Please check your inbox <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="523b3d34203f123b3d34203f26373f223e3326377c3b3d">[email&#160;protected]</a></p>
                         <div class="info-holder">
                             <span>Unsure if that email address was correct?</span> <a href="#">We can help</a>.
+                            <p>To reset your password, enter the email address you use to sign in to website</p>
+
                         </div>
                     </div>
+                    </center>
+                    </div>
+                    
                 </div>
             </div>
         </div>

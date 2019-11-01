@@ -2,7 +2,7 @@ from django.urls import path
 from django.conf.urls import url
 from django.contrib.auth import views as auth_views
 
-from .views import user_login,signup,password_reset,activate_account
+from .views import user_login,signup,password_reset,activate_account,user_logout
 
 app_name='loginapp'
 
@@ -10,6 +10,7 @@ urlpatterns=[
     #path('',login,name='login'),
     url('signup/',signup,name='signup'),
     url(r'^login/$',user_login,name='login'),
+    url(r'^logout/$',user_logout,name='logout'),
     url(r'^password_reset/$', auth_views.PasswordResetView.as_view(template_name = "forget7.html",email_template_name = 'registrations/password_reset_email.html'), name='password_reset'),
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name = "registrations/password_reset_done.html"), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name = "registrations/password_reset_confirm.html"), name='password_reset_confirm'),

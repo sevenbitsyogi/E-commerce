@@ -1,5 +1,7 @@
 from django.db import models
 from django.urls import reverse
+from django.db.models import Q
+
 #from django.utils import timezone
 
 
@@ -42,3 +44,6 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('app_ecommerce:product_detail', args=[self.id, self.slug])
+
+    
+
