@@ -1,10 +1,11 @@
 from django.urls import path
-from django.conf.urls import url
+from django.conf.urls import url,include
 from django.contrib.auth import views as auth_views
 
 from .views import user_login,signup,password_reset,activate_account,user_logout
 
 app_name='loginapp'
+SOCIAL_AUTH_URL_NAMESPACE = 'loginapp:social'
 
 urlpatterns=[
     #path('',login,name='login'),
@@ -16,4 +17,6 @@ urlpatterns=[
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name = "registrations/password_reset_confirm.html"), name='password_reset_confirm'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name = "registrations/password_reset_complete.html"), name='password_reset_complete'),
     url(r'^activate_account/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',activate_account, name='activate_account'),
+    path('social-auth/', include('social_django.urls', namespace="social")),
+
 ]

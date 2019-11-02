@@ -5,9 +5,10 @@
                 <div class="form-content">
                     <div class="form-items">
                         
-                        <div class="container">
+                        <div class="container" padding: 250px 50px 75px 100px>
                             <center>
-                        <div class="col-12  col-md-9 col-lg-6 col-xl-7  ">
+                                    <div style="padding-top: 200px; padding-bottom:200px;  padding-left:100px;  padding-right:100px;">
+                        <div class="col-12  col-md-9 col-lg-6 col-xl-7" padding-top:100px;>
                           
                                 {% if form.errors %}
                                 {% for field in form %}
@@ -20,18 +21,18 @@
                             {% endif %}
                         <form method="POST" action=''>
                         {% csrf_token %}
-                        <h2>Login</h2>
-                        <div class="container">
+                        <h2>Login</h2></br>
+                        <div class="container"  margin-top=100px;>
                             <input class="form-control" type="text" name="username" placeholder="username" required><br/>
                             <input class="form-control" type="password" name="password" placeholder="Password" required><br/>
                             <div class="form-button">
-                                <button id="submit" type="submit" class="ibtn">Login</button> <a href="{% url "loginapp:password_reset" %}">Forget password?</a>
+                                <button id="submit" type="submit" class="ibtn" >Login</button> <a href="{% url "loginapp:password_reset" %}">Forget password?</a>
                             </div>
                         </div>
                         </form>
                     
                         <div class="other-links">
-                            <span>Or login with</span><a href="#">Facebook</a><a href="#">Google</a><a href="#">Linkedin</a>
+                            <span>Or login with </span><a href="#">Facebook </a><a href="{% url 'loginapp:social:begin' 'google-oauth2' %}"> Google </a><a href="#"> Linkedin </a>
                         </div>
                     </div>
                     </center>

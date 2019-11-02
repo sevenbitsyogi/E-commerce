@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'orders',
     'payment',
     'paypal.standard.ipn',
-    'crispy_forms'
+    'crispy_forms',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -54,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware', 
 ]
 
 ROOT_URLCONF = 'e_commerce.urls'
@@ -70,6 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends'
             ],
         },
     },
@@ -137,7 +140,7 @@ STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static")
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'product_photo/')
 
-
+LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
@@ -156,3 +159,19 @@ CART_SESSION_ID = 'cart'
 #paypal
 PAYPAL_RECEIVER_EMAIL = 'yogishah9698@gmail.com'
 PAYPAL_TEST = True
+
+#Google authentication
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY =  '121146068789-u95tdd18hb68jekg5emhib9v97kmeg00.apps.googleusercontent.com'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'KY_wLoDl-HJ7Eis1j52QjhsP'
+
+SOCIAL_AUTH_URL_NAMESPACE = 'loginapp:social'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_WHITELISTED_DOMAINS = ['tristonsoft.com']
+SOCIAL_AUTH_LOGIN_ERROR_URL = '/user/error/'
+SOCIAL_AUTH_RAISE_EXCEPTIONS = False
